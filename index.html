@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN" manifest="app.manifest">
+<head>
+<title>Noizio</title>
+<meta charset="utf-8">
+
+
+<style>
+.noizio {
+    width: 260px;
+    margin: 20px auto;
+}
+.audio {
+    height: 68px;
+    border-bottom: 1px solid #f3f3f3;
+}
+.audio i {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(pic/rain.png) center center no-repeat;
+    background-size: 100% 100%; 
+}
+.audio i.cafe {
+    background-image: url(pic/cafe.png);
+}
+.audio i.thunder {
+    background-image: url(pic/thunder.png);
+}
+header {
+    height: 60px;
+    background: #424242;
+    text-align: center;
+}
+header i {
+    display: inline-block;
+    width: 20px;
+    height: 24px;
+    margin: 17px auto 0;
+    background: url(pic/play.png) center center no-repeat;
+    background-size: 100% 100%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="noizio">
+    <header>
+        <i class="play"></i>
+    </header>
+    <section class="audio-list">
+        <div class="audio">
+            <i class="rain"></i>
+            <audio src="http://7xiblh.com1.z0.glb.clouddn.com/noizio/m/0_tea.ogg"></audio>
+        </div>
+        <div class="audio">
+            <i class="cafe"></i>
+            <audio src="http://7xiblh.com1.z0.glb.clouddn.com/noizio/m/0_tea.ogg"></audio>
+        </div>
+        <div class="audio">
+            <i class="thunder"></i>
+            <audio src="http://7xiblh.com1.z0.glb.clouddn.com/noizio/m/0_tea.ogg"></audio>
+        </div>
+    </section>
+</div>
+
+
+</body>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+// var d = {
+//     greeting: false
+//   }
+// var exampleVM2 = new Vue({
+//   el: '#example-2',
+//   data: d
+// })
+</script>
+</html>
