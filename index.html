@@ -6,20 +6,28 @@
 
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+}
 .noizio {
-    width: 260px;
+    width: 500px;
     margin: 20px auto;
 }
 .audio {
-    height: 68px;
-    border-bottom: 1px solid #f3f3f3;
+    height: 80px;
+    border-bottom: 1px solid #cacaca;
+}
+.audio:last-child {
+    /*border-bottom: 0;*/
 }
 .audio i {
     display: inline-block;
     width: 32px;
-    height: 32px;
+    height: 100%;
     background: url(pic/rain.png) center center no-repeat;
-    background-size: 100% 100%; 
+    background-size: 100% 32px;
+    vertical-align: middle;
 }
 .audio i.cafe {
     background-image: url(pic/cafe.png);
@@ -35,10 +43,49 @@ header {
 header i {
     display: inline-block;
     width: 20px;
-    height: 24px;
-    margin: 17px auto 0;
+    height: 100%;
+    margin: 0 auto;
     background: url(pic/play.png) center center no-repeat;
-    background-size: 100% 100%;
+    background-size: 100% 24px;
+    vertical-align: middle;
+}
+header i.play {
+    background-image: url(pic/play.png);
+}
+header i.pause {
+    background-image: url(pic/pause.png);
+}
+.dib {
+    display: inline-block;
+}
+
+
+
+input[type="range"]{
+    -webkit-appearance: none;
+    border-radius: 2px;
+    width:200px;
+    height:3px;
+    background-image: -webkit-linear-gradient(left ,#333 0%,#333 50%,#fff 50%, #fff 100%);
+    box-shadow:inset #ccc 0 0 5px;
+    outline : none;
+    -webkit-transition:.1s;
+    transition:.1s;
+}
+input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    background: #333;
+    border-radius: 50%;
+    -webkit-transition: .1s;
+    transition: .1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover,
+input[type="range"]::-webkit-slider-thumb:active{
+    width: 15px;
+    height: 15px;
 }
 </style>
 </head>
@@ -52,7 +99,11 @@ header i {
     <section class="audio-list">
         <div class="audio">
             <i class="rain"></i>
-            <audio src="http://7xiblh.com1.z0.glb.clouddn.com/noizio/m/0_tea.ogg"></audio>
+            <div class="control dib">
+                <p class="">October Rain</p>
+                <input type="range" min="0" max="100" step="1" value="50" />
+                <audio src="http://7xiblh.com1.z0.glb.clouddn.com/noizio/m/0_tea.ogg"></audio>
+            </div>
         </div>
         <div class="audio">
             <i class="cafe"></i>
@@ -68,7 +119,7 @@ header i {
 
 </body>
 
-<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="/lib/jquery.js"></script>
 <script>
 // var d = {
 //     greeting: false
