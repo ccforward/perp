@@ -1,24 +1,36 @@
 <template>
   <div id="app">
-    <mint-range></mint-range>
-    <mint-range>
+    <vue-range :value.sync="val" ></vue-range>
+    {{ val }}
+    <p></p>
+    <br>
+    <br>
+    <vue-range>
       <div slot="start">start</div>
       <div slot="end">end</div>
-    </mint-range>
-    <mint-range disabled :value="30"></mint-range>
-    <mint-range :bar-height="3" :value="20"></mint-range>
-    <mint-range :min="10" :max="100">
+    </vue-range>
+    <vue-range disabled :value="30"></vue-range>
+    <vue-range :bar-height="3" :value="20"></vue-range>
+    <vue-range :min="10" :max="max">
       <div slot="start">10</div>
-      <div slot="end">100</div>
-    </mint-range>
+      <div slot="end">{{ max }}</div>
+    </vue-range>
+
   </div>
 </template>
 
 <script>
-import MintRange from './components/range/index.vue'
+import VueRange from './components/range/index.vue'
+
 export default {
+  data: () => {
+    return { 
+      val: 50,
+      max: 80
+    }
+  },
   components: {
-    MintRange
+    VueRange
   }
 }
 </script>
@@ -43,7 +55,7 @@ body {
   text-align: center;
 }
 
-.mt-range {
-  width: 300px;
+.vue-range {
+  min-width: 300px;
 }
 </style>
