@@ -14,16 +14,36 @@ const config = require('./config')
 const app = new Koa()
 const bodyparser = Bodyparser()
 
+if(config.fe){
+  const webpackConfig = require('../build/webpack.dev.conf')
+  const webpack = require('webpack')
+  const webpackDevMiddleware = require('koa-webpack-dev-middleware')
+  const compiler = webpack(webpackConfig)
+  const devMiddleware = webpackDevMiddleware(compiler, {
+    publicPath: webpackConfig.output.publicPath,
+    stats: {
+      colors: true,
+      chunks: true,
+      progress: true
+    }
+  })
+  const hotMiddleware = require('koa-webpack-hot-middleware')(compiler)
+  app.use(devMiddleware)
+  app.use(hotMiddleware)
+}
+
+
+
 
 // log
 const log4js = require('log4js');
 log4js.loadAppender('file');
 log4js.configure({
   appenders: [
-    { type: 'console' },
+    // { type: 'console' },
     {
       type: 'DateFile',
-      filename: './log/error/errors.log',
+      filename: './logs/error/errors.log',
       pattern: "-yyyyMMdd",
       category: 'errors'
     },
@@ -35,24 +55,7 @@ log4js.configure({
 app.use(bodyparser)
 app.use(convert(json()))
 app.use(logger())
-app.use(staticCache(path.join(__dirname, '../public'), {
-  maxAge: 10 * 24 * 60 * 60
-}))
 
-// static
-app.use(koaStatic(path.join(__dirname, '../public'), {
-  pathPrefix: ''
-}))
-
-// views
-app.use(views(path.join(__dirname, '../views'), {
-  extension: 'ejs'
-}))
-
-// 500 error
-koaOnError(app, {
-  template: 'views/500.ejs'
-})
 
 // logger
 app.use(async (ctx, next) => {
@@ -67,6 +70,24 @@ app.use(async (ctx, next) => {
   await require('./routes').routes()(ctx, next)
 })
 
+// views
+app.use(views(path.join(__dirname, '../views'), {
+  extension: 'ejs'
+}))
+
+app.use(staticCache(path.join(__dirname, '../public'), {
+  maxAge: 10 * 24 * 60 * 60
+}))
+
+// static
+app.use(koaStatic(path.join(__dirname, '../public'), {
+  pathPrefix: ''
+}))
+
+// 500 error
+koaOnError(app, {
+  template: 'views/500.ejs'
+})
 
 // 404
 app.use(async (ctx) => {

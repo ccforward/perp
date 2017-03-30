@@ -8,8 +8,10 @@ var Test = {
   },
   test: function(){
     var test = 'test'
-    aaa()
   }
 }
+
+// throw new TypeError('Enum is readonly.')
+throw new ReferenceError('unknow property in this Object.')
 
 Test.init()
