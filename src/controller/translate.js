@@ -8,6 +8,7 @@ const Translate = {
     await ctx.render('translate')
   },
 
+  // 翻译源码的原始 line column
   async parse(ctx, next) {
     const {files, fields} = await asyncBusboy(ctx.req)
     let map 
@@ -35,6 +36,7 @@ const Translate = {
     }
   },
 
+  // 展示源码具体信息
   async source(ctx, next) {
     const {files, fields} = await asyncBusboy(ctx.req)
     let sourceFile = ''
@@ -46,14 +48,14 @@ const Translate = {
         sourceLink = f.path
       }
     }
+
+    const numbers = 10 // 当前错误行前后显示源码行数
     const line = parseInt(fields.line, 10)
     const sourceLines = sourceFile.split('\n')
     const total = sourceLines.length - 1
-    const numbers = 10
 
     let start = 0
     let end = 0
-
 
     if(line - numbers >= 0) {
       start = line - numbers

@@ -1,0 +1,7 @@
+module.exports = {
+  mail: {
+    user: 'from@gmail.com',
+    pass: '',
+    to: 'to@gmail.com'
+  }
+}

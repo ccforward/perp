@@ -1,5 +1,5 @@
 test.js
-
+src/config/mail.js
 
 # Logs
 logs
@@ -43,7 +43,3 @@ app
 
 # JETBRAIN
 .idea
-
-src/config/*
-!src/config/index.js
-!src/config/default.js.idea
