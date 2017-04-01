@@ -7,9 +7,11 @@ const router = Router()
 
 router.get('/', index.index)
 router.get('/example', index.example)
+router.get('/test', index.test)
 
 // errors report
 router.get('/report/errors', report.errors)
+router.get('/report/performance', report.performance)
 
 
 // translate

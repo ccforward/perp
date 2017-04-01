@@ -1,31 +1,11 @@
-
-url
-title
-UA {
-  os
-}
-referer
-net wifi 2g 3g 4g
-window width height
-
-error {
-  m: errorMessage,
-  s: scriptURI,
-  l: lineNumber,
-  c: colNumber,
-  e: err
-}
-
-ext
-
-timestamp
-
-
 ## mongo
 
 create user
 
 ```js
+use perp
+
+
 db.createUser({
   user: "cc",
   pwd: "12345",

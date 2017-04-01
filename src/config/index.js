@@ -4,7 +4,7 @@ const defaultConfig = require('./default')
 
 const cfgs = []
 fs.readdirSync(__dirname).map(filename => {
-  if (filename === 'index.js') {
+  if (filename === 'index.js' || filename === 'mongo.js') {
     return false
   }
   try {

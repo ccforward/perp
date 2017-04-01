@@ -1597,6 +1597,10 @@ es6-promise@3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.2.1.tgz#ec56233868032909207170c39448e24449dd1fc4"
 
+es6-promise@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.1.0.tgz#dda03ca8f9f89bc597e689842929de7ba8cebdf0"
+
 escape-html@~1.0.1, escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
@@ -2494,9 +2498,9 @@ koa-send@^3.1.0, koa-send@^3.2.0:
     mz "^2.3.1"
     resolve-path "^1.3.1"
 
-koa-static-cache@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/koa-static-cache/-/koa-static-cache-4.0.0.tgz#8e8cf3d1029f7e22313fd4b73468a11362f50755"
+koa-static-cache@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/koa-static-cache/-/koa-static-cache-5.0.0.tgz#12e4692fb3456e7bd39484979ad497ff19360b77"
   dependencies:
     compressible "~2.0.6"
     debug "*"
@@ -3182,6 +3186,10 @@ pkg-dir@^1.0.0:
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-1.0.0.tgz#7a4b508a8d5bb2d629d447056ff4e9c9314cf3d4"
   dependencies:
     find-up "^1.0.0"
+
+platform@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.4.tgz#6f0fb17edaaa48f21442b3a975c063130f1c3ebd"
 
 postcss-calc@^5.2.0:
   version "5.3.1"

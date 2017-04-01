@@ -1,6 +1,7 @@
 var oldOnerrorHandler = window.onerror
 
 function onerr(msg, url, line, col, err) {
+  window.onerror = null
   var error = {
     link: location.href,
     ua: navigator.userAgent,
@@ -13,16 +14,19 @@ function onerr(msg, url, line, col, err) {
     line: line,
     col: col,
     errStack: err.stack && err.stack.toString() || '',
-    other: 'other information of system'
+    other: 'other information of system',
+    unique: Math.random()
   }
   var params = []
   for(var key in error) {
     params.push(key + '=' + encodeURIComponent(error[key]))
   }
   report('/report/errors?' + params.join('&'))
+  
   if (oldOnerrorHandler) {
     oldOnerrorHandler.apply(this, arguments)
   }
+  window.onerror = arguments.callee
 }
 
 

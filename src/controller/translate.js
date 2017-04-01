@@ -68,7 +68,29 @@ const Translate = {
     }
 
     for(let i=start;i<=end;i++){
-      sourceCode += `<li data-no=${i}><pre>${sourceLines[i]}</pre></li>`
+      const rex = /\<|\>|\"|\'|\&/g  
+      const code = sourceLines[i].replace(rex, match => {    
+          switch(match){    
+            case "<":    
+              return "&lt;"
+              break
+            case ">":    
+              return "&gt;"
+              break
+            case "\"":    
+              return "&quot;"
+              break
+            case "'":    
+              return "&#39;"
+              break
+            case "&":    
+              return "&amp;"
+              break
+            default :    
+              break
+          }
+        })
+      sourceCode += `<li data-no=${i}><pre>${code}</pre></li>`
     }
 
     fs.unlink(sourceLink, _=>{})

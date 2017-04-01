@@ -9,7 +9,7 @@ const compress = require('koa-compress')
 const logger = require('koa-logger')
 const koaStatic = require('koa-static')
 const koaOnError = require('koa-onerror')
-const staticCache = require('koa-static-cache')
+// const staticCache = require('koa-static-cache')
 const config = require('./config')
 
 const app = new Koa()
@@ -51,14 +51,31 @@ const log4js = require('log4js');
 log4js.loadAppender('file');
 log4js.configure({
   appenders: [
-    // { type: 'console' },
     {
       type: 'DateFile',
       filename: './logs/error/errors.log',
       pattern: "-yyyyMMdd",
-      category: 'errors'
+      category: 'errors',
+      layout: {
+        type: 'pattern',
+        pattern: "%m"
+      }
     },
-    // { type: 'DateFile', filename: './log/performance.log', category: 'performance' }
+    {
+      type: 'DateFile',
+      filename: './logs/performance/perf.log',
+      pattern: "-yyyyMMdd",
+      category: 'performance',
+      layout: {
+        type: 'pattern',
+        pattern: "%m"
+      }
+    },
+    {
+      type: 'file',
+      filename: './logs/system/sys.log',
+      category: 'sys'
+    }
   ]
 })
 
@@ -80,9 +97,9 @@ app.use(compress({
   flush: require('zlib').Z_SYNC_FLUSH
 }))
 
-app.use(staticCache(path.join(__dirname, '../public'), {
-  maxAge: 10 * 24 * 60 * 60
-}))
+// app.use(staticCache(path.join(__dirname, '../public'), {
+//   maxAge: 10 * 24 * 60 * 60
+// }))
 
 // static
 app.use(koaStatic(path.join(__dirname, '../public'), {

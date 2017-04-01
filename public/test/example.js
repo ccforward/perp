@@ -5,6 +5,7 @@ var Test = {
   },
   events: function(){
     var e = 1
+    // abc()
   },
   test: function(){
     var test = 'test'
@@ -12,6 +13,6 @@ var Test = {
 }
 
 // throw new TypeError('Enum is readonly.')
-throw new ReferenceError('unknow property in this Object.')
+// throw new ReferenceError('unknow property in this Object.')
 
 Test.init()

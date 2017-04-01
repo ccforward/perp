@@ -1,3 +1,5 @@
+const Task = require('../task')
+
 const Index = {
   async index(ctx, next) {
     const title = 'koa2 title'
@@ -11,6 +13,10 @@ const Index = {
     await ctx.render('example', {
       title
     })
+  },
+
+  async test(ctx, next){
+    ctx.body = 'test'
   }
 }
 

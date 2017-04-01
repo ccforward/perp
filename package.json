@@ -1,6 +1,7 @@
 {
-  "name": "track",
+  "name": "perp",
   "version": "0.0.1",
+  "description": "Performance and Error Report Platform",
   "author": "ccforward",
   "scripts": {
     "start": "node ./bin/dev.js",
@@ -11,16 +12,17 @@
     "compile": "babel src/ --out-dir app/ --retain-lines --source-maps",
     "clean": "rm -rf app/",
     "test": "mocha -u bdd --compilers js:babel-core/register",
-    "dev": "npm run start"
+    "dev": "supervisor src/index.js"
   },
   "engines": {
-    "node": ">= 7.6"
+    "node": ">= 7.6.0"
   },
   "dependencies": {
     "async-busboy": "^0.4.0",
     "cron": "^1.2.1",
     "date-calc": "^1.0.6",
     "ejs": "^2.5.6",
+    "es6-promise": "^4.1.0",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
@@ -30,12 +32,13 @@
     "koa-onerror": "^3.1.0",
     "koa-router": "^7.0.1",
     "koa-static": "^3.0.0",
-    "koa-static-cache": "^4.0.0",
+    "koa-static-cache": "^5.0.0",
     "koa-views": "^6.0.1",
     "lodash": "^4.17.4",
     "log4js": "^1.1.1",
     "mongoose": "^4.9.2",
-    "nodemailer": "^3.1.8"
+    "nodemailer": "^3.1.8",
+    "platform": "^1.3.4"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
