@@ -4,7 +4,8 @@ const path = require('path')
 const views = require('koa-views')
 const convert = require('koa-convert')
 const json = require('koa-json')
-const Bodyparser = require('koa-bodyparser')
+const bodyparser = require('koa-bodyparser')
+const compress = require('koa-compress')
 const logger = require('koa-logger')
 const koaStatic = require('koa-static')
 const koaOnError = require('koa-onerror')
@@ -12,8 +13,9 @@ const staticCache = require('koa-static-cache')
 const config = require('./config')
 
 const app = new Koa()
-const bodyparser = Bodyparser()
 
+
+// webpack for fe develop
 if(config.fe){
   const webpackConfig = require('../build/webpack.dev.conf')
   const webpack = require('webpack')
@@ -33,7 +35,16 @@ if(config.fe){
 }
 
 
+// middlewares
+app.use(convert(bodyparser()))
+app.use(convert(json()))
+app.use(logger())
 
+
+// views
+app.use(views(path.join(__dirname, '../views'), {
+  extension: 'ejs'
+}))
 
 // log
 const log4js = require('log4js');
@@ -51,12 +62,6 @@ log4js.configure({
   ]
 })
 
-// middlewares
-app.use(bodyparser)
-app.use(convert(json()))
-app.use(logger())
-
-
 // logger
 app.use(async (ctx, next) => {
   const start = new Date()
@@ -70,9 +75,9 @@ app.use(async (ctx, next) => {
   await require('./routes').routes()(ctx, next)
 })
 
-// views
-app.use(views(path.join(__dirname, '../views'), {
-  extension: 'ejs'
+app.use(compress({
+  threshold: 2048,
+  flush: require('zlib').Z_SYNC_FLUSH
 }))
 
 app.use(staticCache(path.join(__dirname, '../public'), {

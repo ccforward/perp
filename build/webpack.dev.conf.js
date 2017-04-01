@@ -26,7 +26,14 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
+      excludeChunks: ['translate'],
       filename: 'index.html',
+      template: './fe/index.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      excludeChunks: ['app'],
+      filename: 'translate.html',
       template: './fe/index.html',
       inject: true
     }),

@@ -1,7 +1,7 @@
 const fs = require('fs')
 const sourceMap = require('source-map')
 
-const map = fs.readFileSync('./test/main.bundle.js.map')
+const map = fs.readFileSync('./source-test/main.bundle.js.map')
 
 
 
@@ -10,9 +10,9 @@ var consumer = new sourceMap.SourceMapConsumer(map.toString());
 
 const origin = consumer.originalPositionFor({ line: 1, column: 751 })
 
-// console.log(origin.source)
-// console.log(origin.line)
-// console.log(origin.column)
+console.log(origin.source)
+console.log(origin.line)
+console.log(origin.column)
 
 const line = origin.line
 

@@ -9,7 +9,8 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './fe/main.js'
+    app: './fe/main.js',
+    translate: './fe/translate.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -22,7 +23,8 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('fe')
+      '@': resolve('fe'),
+      'rubik': resolve('node_modules/i-rubik/dist')
     }
   },
   module: {
