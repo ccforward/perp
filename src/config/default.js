@@ -1,5 +1,5 @@
 module.exports = {
-  fe: 1,
+  fe: 0,
   port: 8003,
   db: {
     host: 'localhost',

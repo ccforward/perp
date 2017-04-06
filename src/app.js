@@ -9,7 +9,7 @@ const compress = require('koa-compress')
 const logger = require('koa-logger')
 const koaStatic = require('koa-static')
 const koaOnError = require('koa-onerror')
-// const staticCache = require('koa-static-cache')
+const staticCache = require('koa-static-cache')
 const config = require('./config')
 
 const app = new Koa()
@@ -97,9 +97,9 @@ app.use(compress({
   flush: require('zlib').Z_SYNC_FLUSH
 }))
 
-// app.use(staticCache(path.join(__dirname, '../public'), {
-//   maxAge: 10 * 24 * 60 * 60
-// }))
+app.use(staticCache(path.join(__dirname, '../public'), {
+  maxAge: 10 * 24 * 60 * 60
+}))
 
 // static
 app.use(koaStatic(path.join(__dirname, '../public'), {

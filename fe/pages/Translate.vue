@@ -23,7 +23,7 @@
 
 <script>
 import 'whatwg-fetch'
-// 2 423 abc()
+// line:2 column:423 abc()
 export default {
   name: 'translate',
   data(){

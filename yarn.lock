@@ -1365,9 +1365,9 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-date-calc@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/date-calc/-/date-calc-1.0.6.tgz#4bf2cee24f3c6b5ffdb6fdbd684a3a45826be799"
+date-calc@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/date-calc/-/date-calc-1.0.9.tgz#daf012b98a53922d43077f7c8ad0b1c1bd1c8583"
 
 date-format@^0.0.0:
   version "0.0.0"

@@ -24,7 +24,7 @@ const Translate = {
     const consumer = new sourceMap.SourceMapConsumer(map.toString())
     origin = consumer.originalPositionFor({
       line: parseInt(fields.line, 10),
-      column: parseInt(fields.col,10)
+      column: parseInt(fields.col, 10)
     })
     fs.unlink(sourcemapLink, _=>{})
 

@@ -25,7 +25,7 @@ const parseParams = params => {
 }
 
 let errCache = []
-const errCacheSize = 5
+const errCacheSize = 100
 // 定时扫描 errCache
 // Task.scan(errCache)
 

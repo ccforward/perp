@@ -1,6 +1,11 @@
 ## mongo
 
-create user
+按dtime、os、link查询
+
+最近5天 总数 列表
+os 最近5天
+
+
 
 ```js
 use perp

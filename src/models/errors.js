@@ -1,4 +1,7 @@
+const log4js = require('log4js')
 const mongoose = require('../config/mongo')
+
+const loggerSys = log4js.getLogger('sys')
 
 const Schema = mongoose.Schema
 const ErrsSchema = new Schema({
@@ -34,12 +37,14 @@ class ErrsDAO {
     })
   }
 
-  search(query){
+  search(query, offset=0, limit=20){
     return new Promise((resolve, reject) => {
-      Errs.find(query, (err, data) => {
-        if(err) return reject(err)
-        let result = []
-        resolve(result)
+      Errs.find(query).skip(offset).limit(limit).exec((err, data) => {
+        if(err) {
+          reject(false)
+          loggerSys.error(err)
+        }
+        resolve(data)
       })
     })
   }

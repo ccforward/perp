@@ -102,6 +102,8 @@ module.exports = {
 
   // 每天 00:05 处理前一天异常、性能日志
   daily() {
+    // const d = new DateCalc()
+    // checkLog(`./logs/error/errors.log-${d.before()}`, loggerErr, errorsDAO)
     new CronJob('00 05 00 * * *', () => {
       const d = new DateCalc()
       checkLog(`./logs/error/errors.log-${d.before()}`, loggerErr, errorsDAO)
