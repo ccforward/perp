@@ -5,7 +5,7 @@ const perfSchema = require('./schema/perf')
 
 const Schema = mongoose.Schema
 const PerfSchema = new Schema(perfSchema)
-const Perf = mongoose.model('Perfs', PerfSchema)
+const Perf = mongoose.model('LatestPerfs', PerfSchema)
 
 class PerfDAO {
   insertMany(errs){
@@ -29,6 +29,18 @@ class PerfDAO {
         }
         let result = []
         resolve(result)
+      })
+    })
+  }
+
+  remove(query = {}){
+    return new Promise((resolve, reject) => {
+      Errs.remove(query, (err, data) => {
+        if(err) {
+          reject(false)
+          loggerSys.error(err)
+        }
+        resolve(data)
       })
     })
   }

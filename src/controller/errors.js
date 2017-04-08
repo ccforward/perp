@@ -11,6 +11,7 @@ const parseResult = result => {
     const err = {
       link: re.link,
       ua: re.ua,
+      ip: re.ip,
       title: re.title,
       size: re.size,
       referer: re.referer,
@@ -31,7 +32,6 @@ const parseResult = result => {
 }
 module.exports = {
   async search(ctx, next) {
-    console.log(ctx.req)
     const params = querystring.parse(url.parse(ctx.req.url).query)
     let query = {}
     if(ctx.params.day) {

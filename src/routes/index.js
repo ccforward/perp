@@ -8,7 +8,6 @@ const router = Router()
 
 router.get('/', index.index)
 router.get('/example', index.example)
-router.get('/test', index.test)
 
 // 日志列表页面
 router.get('/logs/errors', index.errors)
@@ -19,7 +18,9 @@ router.get('/report/errors', report.errors)
 router.get('/report/performance', report.performance)
 
 
-// 多维度查询
+// ================= API =================
+
+// errors 多维度查询
 router.get('/errors/day/:day', errs.search)
 router.get('/errors/month/:month', errs.search)
 router.get('/errors/os/:os', errs.search)

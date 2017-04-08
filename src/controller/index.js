@@ -1,3 +1,4 @@
+const task = require('../task/index')
 const Index = {
   async index(ctx, next) {
     const title = 'koa2 title'
@@ -13,14 +14,10 @@ const Index = {
     })
   },
 
-  async test(ctx, next){
-    ctx.body = 'test'
-  },
-
-  async errors(ctx, next){
+  async errors(ctx, next) {
     ctx.body = 'errors'
   },
-  async performance(ctx, next){
+  async performance(ctx, next) {
     ctx.body = 'performance'
   }
 }

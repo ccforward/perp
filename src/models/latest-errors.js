@@ -5,7 +5,7 @@ const errSchema = require('./schema/error')
 
 const Schema = mongoose.Schema
 const ErrsSchema = new Schema(errSchema)
-const Errs = mongoose.model('Errs', ErrsSchema)
+const Errs = mongoose.model('LatestErrs', ErrsSchema)
 
 class ErrsDAO {
   insertMany(errs){
@@ -13,6 +13,7 @@ class ErrsDAO {
       Errs.insertMany(errs, (err, docs) => {
         if(err){
           reject(false)
+          loggerSys.error(err)
         }
         resolve(true)
       })
@@ -31,7 +32,18 @@ class ErrsDAO {
     })
   }
 
-}
+  remove(query = {}){
+    return new Promise((resolve, reject) => {
+      Errs.remove(query, (err, data) => {
+        if(err) {
+          reject(false)
+          loggerSys.error(err)
+        }
+        resolve(data)
+      })
+    })
+  }
 
+}
 
 module.exports = ErrsDAO

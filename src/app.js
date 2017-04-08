@@ -14,6 +14,11 @@ const config = require('./config')
 
 const app = new Koa()
 
+global.errCache = []
+global.logLines = {
+  error: 0,
+  performace: 0
+}
 
 // webpack for fe develop
 if(config.fe){
@@ -51,6 +56,7 @@ const log4js = require('log4js');
 log4js.loadAppender('file');
 log4js.configure({
   appenders: [
+    // 异常日志
     {
       type: 'DateFile',
       filename: './logs/error/errors.log',
@@ -61,6 +67,7 @@ log4js.configure({
         pattern: "%m"
       }
     },
+    // 性能日志
     {
       type: 'DateFile',
       filename: './logs/performance/perf.log',
@@ -71,6 +78,7 @@ log4js.configure({
         pattern: "%m"
       }
     },
+    // 系统日志
     {
       type: 'file',
       filename: './logs/system/sys.log',
@@ -125,7 +133,7 @@ app.on('error', async (err, ctx) => {
 const port = parseInt(config.port || '8003')
 const server = http.createServer(app.callback())
 
-server.listen(port)
+server.listen(port, '0.0.0.0')
 server.on('error', (error) => {
   if (error.syscall !== 'listen') {
     throw error
