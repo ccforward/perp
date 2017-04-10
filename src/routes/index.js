@@ -20,6 +20,11 @@ router.get('/report/performance', report.performance)
 
 // ================= API =================
 
+// 准实时最新日志查询
+router.get('/errors/latest', errs.search)
+// router.get('/performance/latest', errs.search)
+
+
 // errors 多维度查询
 router.get('/errors/day/:day', errs.search)
 router.get('/errors/month/:month', errs.search)

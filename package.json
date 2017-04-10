@@ -12,6 +12,7 @@
     "compile": "babel src/ --out-dir app/ --retain-lines --source-maps",
     "clean": "rm -rf app/",
     "test": "mocha -u bdd --compilers js:babel-core/register",
+    "dev:fe": "node src/index.js -fe",
     "dev": "supervisor src/index.js"
   },
   "engines": {
@@ -39,6 +40,7 @@
     "mongoose": "^4.9.2",
     "nodemailer": "^3.1.8",
     "platform": "^1.3.4",
+    "query-string": "^4.3.2",
     "split": "^1.0.0"
   },
   "devDependencies": {

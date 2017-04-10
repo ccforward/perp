@@ -8,6 +8,7 @@ const Index = {
   },
 
   async example(ctx, next) {
+    task.latest()
     const title = 'report example'
     await ctx.render('example', {
       title

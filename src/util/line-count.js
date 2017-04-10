@@ -1,15 +1,15 @@
 const fs = require('fs')
 const split = require('split')
-const lineCount =  (filePath) => {
+
+module.exports = filePath => {
   let lines = 0
   return new Promise((resolve, reject) => {
-    fs
-      .createReadStream(filePath)
+    fs.createReadStream(filePath)
       .pipe(split())
-      .on('data', (line) => {
+      .on('data', line => {
         lines++
       })
-      .on('end', () => {
+      .on('end', _ => {
         resolve(lines - 1)
       })
       .on('error', e => {
@@ -17,5 +17,3 @@ const lineCount =  (filePath) => {
       })
   })
 }
-
-module.exports = lineCount

@@ -12,10 +12,28 @@ class ErrsDAO {
     return new Promise((resolve, reject) => {
       Errs.insertMany(errs, (err, docs) => {
         if(err){
+          loggerSys.error(err)
           reject(false)
         }
         resolve(true)
       })
+    }).catch(err => {
+      loggerSys.error(err)
+      console.log(err)
+    })
+  }
+  count(){
+    return new Promise((resolve, reject) => {
+      Errs.count(query, (err, data) => {
+        if(err) {
+          reject(false)
+          loggerSys.error(err)
+        }
+        resolve(data)
+      })
+    }).catch(err => {
+      loggerSys.error(err)
+      console.log(err)
     })
   }
 
@@ -28,6 +46,9 @@ class ErrsDAO {
         }
         resolve(data)
       })
+    }).catch(err => {
+      loggerSys.error(err)
+      console.log(err)
     })
   }
 

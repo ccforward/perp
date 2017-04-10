@@ -28,8 +28,6 @@ const parseParams = (req, params) => {
 
 let errCache = []
 const errCacheSize = 100
-// 定时扫描 errCache
-// Task.scan(errCache)
 
 const Report = {
   // 上报异常日志

@@ -11,17 +11,12 @@ const koaStatic = require('koa-static')
 const koaOnError = require('koa-onerror')
 const staticCache = require('koa-static-cache')
 const config = require('./config')
+const Task = require('./task')
 
 const app = new Koa()
 
-global.errCache = []
-global.logLines = {
-  error: 0,
-  performace: 0
-}
-
 // webpack for fe develop
-if(config.fe){
+if(process.argv[2] == '-fe'){
   const webpackConfig = require('../build/webpack.dev.conf')
   const webpack = require('webpack')
   const webpackDevMiddleware = require('koa-webpack-dev-middleware')
@@ -38,6 +33,18 @@ if(config.fe){
   app.use(devMiddleware)
   app.use(hotMiddleware)
 }
+
+// global variable for cronjob task
+global.errCache = []
+global.logLines = {
+  error: 0,
+  performace: 0
+}
+
+// Tasks
+// Task.scan()
+// Task.latest()
+// Task.daily()
 
 
 // middlewares

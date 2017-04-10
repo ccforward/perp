@@ -36,7 +36,18 @@ export default {
       code: ''
     }
   },
-  mounted(){
+  created() {
+    const params = location.href.split('?')[1].split('&')
+    for(let p of params) {
+      if(p.indexOf('line')>=0) {
+        this.line = p.split('=')[1]
+      }
+      if(p.indexOf('col')>=0) {
+        this.col = p.split('=')[1]
+      }
+    }
+  },
+  mounted() {
     this.$rubik.init()
   },
   methods: {

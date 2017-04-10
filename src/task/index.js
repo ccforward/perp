@@ -126,7 +126,7 @@ module.exports = {
   },
 
   // 每 3min 定时扫描最新日志并存入 latest
-  async latest() {
+  latest() {
     new CronJob('* 3 * * * *', () => {
       checkLatest(errorLog, 'error', latestErrorsDAO)
       checkLatest(perfLog, 'perf', LatestPerfDAO)

@@ -19,6 +19,17 @@ class ErrsDAO {
       })
     })
   }
+  count(query){
+    return new Promise((resolve, reject) => {
+      Errs.count(query, (err, data) => {
+        if(err) {
+          reject(false)
+          loggerSys.error(err)
+        }
+        resolve(data)
+      })
+    })
+  }
 
   search(query, offset=0, limit=20){
     return new Promise((resolve, reject) => {
