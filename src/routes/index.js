@@ -3,6 +3,7 @@ const index = require('../controller/index')
 const report = require('../controller/report')
 const translate = require('../controller/translate')
 const errs = require('../controller/errors')
+const perf = require('../controller/performance')
 
 const router = Router()
 
@@ -22,7 +23,7 @@ router.get('/report/performance', report.performance)
 
 // 准实时最新日志查询
 router.get('/errors/latest', errs.search)
-// router.get('/performance/latest', errs.search)
+router.get('/performance/latest', perf.search)
 
 
 // errors 多维度查询
@@ -30,6 +31,12 @@ router.get('/errors/day/:day', errs.search)
 router.get('/errors/month/:month', errs.search)
 router.get('/errors/os/:os', errs.search)
 router.get('/errors/link/:link', errs.search)
+
+// performance 多维度查询
+router.get('/performance/day/:day', perf.search)
+router.get('/performance/month/:month', perf.search)
+router.get('/performance/os/:os', perf.search)
+router.get('/performance/link/:link', perf.search)
 
 
 // translate

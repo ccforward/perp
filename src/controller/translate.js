@@ -14,19 +14,24 @@ const Translate = {
     let map 
     let origin = {}
     let sourcemapLink = ''
-    for(let f of files) {
-      if(f.fieldname == 'sourcemap') {
-        map = fs.readFileSync(f.path)
-        sourcemapLink = f.path
+    if(files.length) {
+      for(let f of files) {
+        if(f.fieldname == 'sourcemap') {
+          map = fs.readFileSync(f.path)
+          sourcemapLink = f.path
+        }
       }
+    }else {
+      map = fs.readFileSync('./translate-test/translate.js.map')
     }
 
-    const consumer = new sourceMap.SourceMapConsumer(map.toString())
-    origin = consumer.originalPositionFor({
+    const smc = new sourceMap.SourceMapConsumer(JSON.parse(map.toString()))
+    origin = smc.originalPositionFor({
       line: parseInt(fields.line, 10),
       column: parseInt(fields.col, 10)
     })
-    fs.unlink(sourcemapLink, _=>{})
+
+    sourcemapLink && fs.unlink(sourcemapLink, _=>{})
 
     ctx.body = {
       err: 0,
@@ -42,11 +47,15 @@ const Translate = {
     let sourceFile = ''
     let sourceLink = ''
     let sourceCode = ''
-    for(let f of files) {
-      if(f.fieldname == 'source') {
-        sourceFile = fs.readFileSync(f.path).toString()
-        sourceLink = f.path
+    if(files.length) {
+      for(let f of files) {
+        if(f.fieldname == 'source') {
+          sourceFile = fs.readFileSync(f.path).toString()
+          sourceLink = f.path
+        }
       }
+    }else {
+      sourceFile = fs.readFileSync('./translate-test/Translate.vue').toString()
     }
 
     const numbers = 10 // 当前错误行前后显示源码行数
@@ -95,7 +104,7 @@ const Translate = {
       sourceCode += `<li data-no=${i}><pre>${code}</pre></li>`
     }
 
-    fs.unlink(sourceLink, _=>{})
+    sourceLink && fs.unlink(sourceLink, _=>{})
 
     ctx.body = {
       err: 0,

@@ -20,22 +20,33 @@ class PerfDAO {
     })
   }
 
-  search(query){
+  count(query){
     return new Promise((resolve, reject) => {
-      Perf.find(query, (err, data) => {
+      Perf.count(query, (err, data) => {
         if(err) {
+          reject(false)
           loggerSys.error(err)
-          reject([])
         }
-        let result = []
-        resolve(result)
+        resolve(data)
+      })
+    })
+  }
+
+  search(query={}, offset=0, limit=20){
+    return new Promise((resolve, reject) => {
+      Perf.find(query).skip(offset).limit(limit).exec((err, data) => {
+        if(err) {
+          reject(false)
+          loggerSys.error(err)
+        }
+        resolve(data)
       })
     })
   }
 
   remove(query = {}){
     return new Promise((resolve, reject) => {
-      Errs.remove(query, (err, data) => {
+      Perf.remove(query, (err, data) => {
         if(err) {
           reject(false)
           loggerSys.error(err)

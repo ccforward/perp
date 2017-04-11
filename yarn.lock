@@ -1517,6 +1517,12 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
+echarts@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-3.5.2.tgz#c5baf0157c257394b22d3e89937eb368a27bf6ac"
+  dependencies:
+    zrender "^3.4.2"
+
 editorconfig@^0.13.2:
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/editorconfig/-/editorconfig-0.13.2.tgz#8e57926d9ee69ab6cb999f027c2171467acceb35"
@@ -2125,9 +2131,9 @@ humanize-number@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/humanize-number/-/humanize-number-0.0.2.tgz#11c0af6a471643633588588048f1799541489c18"
 
-i-rubik@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/i-rubik/-/i-rubik-0.3.3.tgz#3cb3bcbe7bc98ce3a51b9cbe2161b98bfee86e5e"
+i-rubik@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/i-rubik/-/i-rubik-0.4.0.tgz#6932c3506293219ca5a090fc31bbcd80c88e5ace"
   dependencies:
     vue "^2.1.8"
 
@@ -4544,3 +4550,7 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+zrender@^3.4.2:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-3.4.2.tgz#7286ef00e640d9686b63892eb2087bcffd1b7ea1"

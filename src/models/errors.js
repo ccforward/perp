@@ -22,7 +22,7 @@ class ErrsDAO {
       console.log(err)
     })
   }
-  count(){
+  count(query={}){
     return new Promise((resolve, reject) => {
       Errs.count(query, (err, data) => {
         if(err) {
@@ -37,9 +37,9 @@ class ErrsDAO {
     })
   }
 
-  search(query, offset=0, limit=20){
+  search(query={}, offset=0, limit=20) {
     return new Promise((resolve, reject) => {
-      Errs.find(query).skip(offset).limit(limit).exec((err, data) => {
+      Errs.find(query).sort({_id: 'desc'}).skip(offset).limit(limit).exec((err, data) => {
         if(err) {
           reject(false)
           loggerSys.error(err)
@@ -51,7 +51,6 @@ class ErrsDAO {
       console.log(err)
     })
   }
-
 }
 
 

@@ -1,16 +1,16 @@
 const url = require('url')
 const querystring = require('querystring')
 const DateCalc = require('date-calc')
-const ErrorsDAO = require('../models/errors')
-const LatestErrorsDAO = require('../models/latest-errors')
-const errorsDAO = new ErrorsDAO()
-const latestErrorsDAO = new LatestErrorsDAO()
+const PerfDAO = require('../models/performance')
+const LatestPerfDAO = require('../models/latest-performance')
+const perfDAO = new PerfDAO()
+const latestPerfDAO = new LatestPerfDAO()
 
 const dateCalc = new DateCalc()
 const parseResult = result => {
-  const errs = []
+  const results = []
   for(let re of result) {
-    const err = {
+    const perf = {
       link: re.link,
       ua: re.ua,
       ip: re.ip,
@@ -18,19 +18,27 @@ const parseResult = result => {
       size: re.size,
       referer: re.referer,
       time: dateCalc.time(re.timestamp),
-      msg: re.msg,
-      url: re.url,
-      line: re.line,
-      col: re.col,
-      errStack: re.errStack,
+      
+      total: re.total,
+      domReady: re.domReady,
+      readyStart: re.readyStart,
+      redirect: re.redirect,
+      appcache: re.appcache,
+      unloadEvent: re.unloadEvent,
+      dnsLookup: re.dnsLookup,
+      connect: re.connect,
+      request: re.request,
+      initDomTree: re.initDomTree,
+      loadEvent: re.loadEvent,
+      
       other: re.other,
       os: re.os,
       dtime: re.dtime,
       date: dateCalc.time(re.date)
     }
-    errs.push(err)
+    results.push(perf)
   }
-  return errs
+  return results
 }
 module.exports = {
   async search(ctx, next) {
@@ -47,7 +55,7 @@ module.exports = {
     let offset = (page-1)*limit
     let query = {}
     let total = 0
-    let errs = []
+    let perfs = []
 
     if(ctx.params.day) {
       query.dtime = ctx.params.day
@@ -77,12 +85,14 @@ module.exports = {
       }
     }
 
+    console.log(query)
+
     if(~ctx.req.url.indexOf('/latest')) {
-      total = await latestErrorsDAO.count(query)
-      errs = parseResult(await latestErrorsDAO.search(query, offset, limit))
+      total = await latestPerfDAO.count(query)
+      perfs = parseResult(await latestPerfDAO.search(query, offset, limit))
     }else {
-      total = await errorsDAO.count(query)
-      errs = parseResult(await errorsDAO.search(query, offset, limit))
+      total = await perfDAO.count(query)
+      perfs = parseResult(await perfDAO.search(query, offset, limit))
     }
     ctx.body = {
       err: 0,
@@ -91,7 +101,7 @@ module.exports = {
       },
       data: {
         date: ctx.params.day || dateCalc.now(),
-        errs: errs
+        perfs: perfs
       }
     }
   }

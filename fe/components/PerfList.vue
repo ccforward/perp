@@ -1,23 +1,23 @@
 <template>
   <div class="error-list">
-    <h2 class="date-title">{{errorData.date}}</h2>
+    <h2 class="date-title">{{perfData.date}}</h2>
     <table class=" bordered highlight striped">
       <thead>
         <tr>
           <th>链接</th>
+          <th>总加载时长</th>
           <th>标题</th>
           <th>系统</th>
-          <th>异常信息</th>
           <th>客户端时间</th>
           <th>详细</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in errorData.errs">
+        <tr v-for="item in perfData.perfs">
           <td><a target="_blank" :href="item.link">{{ item.link }}</a></td>
+          <td class="light-green-text"><b>{{ item.total }}</b></td>
           <td>{{ item.title }}</td>
           <td>{{ item.os }}</td>
-          <td class="red-text">{{ item.msg }}</td>
           <td>{{ item.time }}</td>
           <td><r-btn info small @click.native="showDetail(item, 'modalDetail')">详情</r-btn></td>
         </tr>
@@ -28,14 +28,48 @@
       <r-card>
         <ol class="detail-list">
           <li><b>链接: </b> <a target="_blank" :href="detail.link">{{ detail.link }}</a></li>
-          <li><b>异常信息：</b><br> 
-          <p>
-            <a target="_blank" :href="detail.url">{{ detail.url }}</a>
-            <span>at line: {{ detail.line }}  column: {{ detail.col }}</span>
-            <a target="_blank" :href="'/translate.html?line='+detail.line+'&col='+detail.col">源码翻译</a>
-          </p>
-          <p class="red-text">{{ detail.msg }}</p>
-          <pre class="red-text" v-html="detail.errStack"></pre>
+          <li><b>性能统计：</b><br> 
+          <table class="highlight bordered narrow">
+            <thead>
+              <tr>
+                <th>total</th>
+                <th>domReady</th>
+                <th>readyStart</th>
+                <th>redirect</th>
+                <th>appcache</th>
+                <th>unloadEvent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ detail.total }}</td>
+                <td>{{ detail.domReady }}</td>
+                <td>{{ detail.readyStart }}</td>
+                <td>{{ detail.redirect }}</td>
+                <td>{{ detail.appcache }}</td>
+                <td>{{ detail.unloadEvent }}</td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th>dnsLookup</th>
+                <th>connect</th>
+                <th>request</th>
+                <th>initDomTree</th>
+                <th>loadEvent</th>
+              </tr>
+              
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ detail.dnsLookup }}</td>
+                <td>{{ detail.connect }}</td>
+                <td>{{ detail.request }}</td>
+                <td>{{ detail.initDomTree }}</td>
+                <td>{{ detail.loadEvent }}</td>
+              </tr>
+            </tbody>
+          </table>
           </li>
           <li><b>标题: </b> {{ detail.title }}</li>
           <li><b>系统: </b> {{ detail.os }}</li>
@@ -60,8 +94,8 @@
 
 <script>
 export default {
-  name: 'error-list',
-  props: ['errorData'],
+  name: 'performance-list',
+  props: ['perfData'],
   data() {
     return {
       detail: {}

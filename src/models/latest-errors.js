@@ -11,7 +11,7 @@ class ErrsDAO {
   insertMany(errs){
     return new Promise((resolve, reject) => {
       Errs.insertMany(errs, (err, docs) => {
-        if(err){
+        if(err) {
           reject(false)
           loggerSys.error(err)
         }
@@ -31,7 +31,7 @@ class ErrsDAO {
     })
   }
 
-  search(query, offset=0, limit=20){
+  search(query={}, offset=0, limit=20){
     return new Promise((resolve, reject) => {
       Errs.find(query).skip(offset).limit(limit).exec((err, data) => {
         if(err) {

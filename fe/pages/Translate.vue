@@ -23,27 +23,29 @@
 
 <script>
 import 'whatwg-fetch'
-// line:2 column:423 abc()
+// line:1 column:423 abc()
 export default {
   name: 'translate',
   data(){
     return {
       sourceFile: {},
       sourcemap: {},
-      line: '',
-      col: '',
+      line: 1,
+      col: 423,
       origin: {},
       code: ''
     }
   },
   created() {
-    const params = location.href.split('?')[1].split('&')
-    for(let p of params) {
-      if(p.indexOf('line')>=0) {
-        this.line = p.split('=')[1]
-      }
-      if(p.indexOf('col')>=0) {
-        this.col = p.split('=')[1]
+    if(location.href.split('?')[1]){
+      const params = location.href.split('?')[1].split('&')
+      for(let p of params) {
+        if(p.indexOf('line')>=0) {
+          this.line = p.split('=')[1]
+        }
+        if(p.indexOf('col')>=0) {
+          this.col = p.split('=')[1]
+        }
       }
     }
   },
@@ -70,7 +72,7 @@ export default {
 
     translate() {
       const formdata = new FormData()
-      if(this.sourceFile[0]){
+      // if(this.sourceFile[0]){
         formdata.append('source', this.sourceFile[0])
         formdata.append('line', this.origin.line)
         fetch('/translate/source', {
@@ -83,7 +85,7 @@ export default {
             this.code = d.data
           }
         })
-      }
+      // }
     }
   }
 }
@@ -95,6 +97,7 @@ export default {
 .translate {
   width 80%
   margin 0 auto
+  padding-bottom 50px
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   color #2c3e50
@@ -152,7 +155,7 @@ h1 {
     color #2196f3
     font-family Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace
     &:nth-child(2n) {
-      background #ddd
+      background #d2d2d2
     }
     &:after {
       content attr(data-no)
