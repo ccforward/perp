@@ -13,6 +13,9 @@ router.get('/example', index.example)
 // 日志列表页面
 router.get('/logs/errors', index.errors)
 router.get('/logs/performance', index.performance)
+// 源码翻译页
+router.get('/translate/', translate.index)
+router.get('/translate.html/', translate.index)
 
 // errors report
 router.get('/report/errors', report.errors)
@@ -40,7 +43,6 @@ router.get('/performance/link/:link', perf.search)
 
 
 // translate
-router.get('/translate/', translate.index)
 router.post('/translate/parse', translate.parse)
 router.post('/translate/source', translate.source)
 
