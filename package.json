@@ -14,7 +14,7 @@
     "test": "mocha -u bdd --compilers js:babel-core/register",
     "dev:fe": "node src/index.js -fe",
     "dev": "supervisor src/index.js",
-    "run": "node src/index.js",
+    "run": "node src/index.js"
   },
   "engines": {
     "node": ">= 7.6.0"
