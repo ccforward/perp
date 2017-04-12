@@ -1,6 +1,6 @@
 # 前端性能、异常监控平台 PERP
 
-Performance and Errors Report Platform
+Performance and Errors Report Platform for FrontEnd
 
 ## 技术栈
 Koa2 + MongoDB + Vue.js
@@ -14,8 +14,8 @@ Koa2 + MongoDB + Vue.js
 ### 定时任务
 
 * 扫描任务，每 5min 扫描一次异常缓存中的数据，如果同一异常数据过高，则会发送报警邮件或报警短信
-* 准实时日志任务，每 3min 扫描一次当天的日志文件，将最新的日志数据添加进数据库
-* 每日任务，每天 00:05 将前一天异常、性能日志写入批量入库
+* 准实时日志任务，每 3min 扫描一次当天的日志文件，将最新的日志数据添增量添加进数据库
+* 每日任务，每天 00:05 将前一天异常、性能日志全量入库
 
 ### 数据统计
 
@@ -25,6 +25,13 @@ Koa2 + MongoDB + Vue.js
 ### 代码翻译、还原
 
 通过异常信息中的 line(行) column(列) 和对应的 surcemap 文件，将压缩后的代码出错位置还原到压缩前源码位置上。
+
+### 前端 SDK
+
+性能统计是根据浏览器的 `timing` API 来完成上报的，如果不支持 `timing` API，则不上报，可以手动上报性能统计数据。
+
+异常统计通过监听浏览器的 `error` 事件获取异常信息上报。  
+其中通过用 `arguments.callee.caller` 来兼容不支持 `onerror` 事件中 `stack` 参数的情况。
 
 ## 数据 MongoDB
 
@@ -91,8 +98,10 @@ dmonth: '月份 201701 格式',
 date: '服务端上报时间',
 ```
 
+## Usage
 
 ### 创建数据库
+
 进入mongo
 
 ```js
@@ -110,3 +119,31 @@ db.createUser({
   }]
 })
 ```
+
+### 启动
+
+修改配置文件 
+
+* `./src/config/default` 端口配置
+* `./src/config/mail.js` 邮件配置
+* `./src/config/mongo.js` MongoDB 数据库配置
+
+```shell
+yarn install 
+# 或者
+npm install
+
+# 开发
+npm run devsdk
+
+# 前端页面开发
+npm run dev:fe
+
+# 线上运行 
+npm start
+```
+
+
+
+
+
