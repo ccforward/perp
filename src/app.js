@@ -65,7 +65,7 @@ log4js.configure({
   appenders: [
     // 异常日志
     {
-      type: 'DateFile',
+      type: 'dateFile',
       filename: './logs/error/errors.log',
       pattern: "-yyyyMMdd",
       category: 'errors',
@@ -76,7 +76,7 @@ log4js.configure({
     },
     // 性能日志
     {
-      type: 'DateFile',
+      type: 'dateFile',
       filename: './logs/performance/perf.log',
       pattern: "-yyyyMMdd",
       category: 'performance',

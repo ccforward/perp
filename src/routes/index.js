@@ -8,7 +8,7 @@ const perf = require('../controller/performance')
 const router = Router()
 
 router.get('/', index.index)
-router.get('/example', index.example)
+// router.get('/example', index.example)
 
 // 日志列表页面
 router.get('/logs/errors', index.errors)

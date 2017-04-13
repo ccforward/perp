@@ -8,6 +8,7 @@ Koa2 + MongoDB + Vue.js
 * Koa2 做web框架，log4js做日志服务
 * 通过定时任务将日志存入 MongoDB 中
 * 后台前端页面基于 Vue.js 和 Rubik UI 搭建
+* node.js 版本 >= 7.6.0
 
 ## 功能
 
@@ -25,6 +26,15 @@ Koa2 + MongoDB + Vue.js
 ### 代码翻译、还原
 
 通过异常信息中的 line(行) column(列) 和对应的 surcemap 文件，将压缩后的代码出错位置还原到压缩前源码位置上。
+
+### demo
+
+demo暂时无数据
+
+* [异常数据统计](http://perp.ccforward.net/) 
+* [性能数据统计](http://perp.ccforward.net/#/performance)
+* [代码翻译demo](http://perp.ccforward.net/translate)  
+  直接点解析源码和翻译源码按钮即可查看默认代码的翻译
 
 ### 前端 SDK
 
@@ -139,8 +149,8 @@ npm run devsdk
 # 前端页面开发
 npm run dev:fe
 
-# 线上运行 
-npm start
+# 线上用 PM2 运行 
+pm2 start src/index.js
 ```
 
 
