@@ -1,5 +1,6 @@
 test.js
 src/config/mail.js
+src/config/mongo.js
 
 # Logs
 logs

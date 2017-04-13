@@ -134,9 +134,9 @@ db.createUser({
 
 修改配置文件 
 
-* `./src/config/default` 端口配置
-* `./src/config/mail.js` 邮件配置
-* `./src/config/mongo.js` MongoDB 数据库配置
+* `./src/config/default.js` 端口配置
+* 根据 mail.sample 新建文件 `./src/config/mail.js` 邮件配置
+* 根据 mongo.sample 新建文件 `./src/config/mongo.js` MongoDB 数据库配置
 
 ```shell
 yarn install 
