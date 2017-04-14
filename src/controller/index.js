@@ -1,4 +1,4 @@
-const task = require('../task/index')
+// const task = require('../task/index')
 const Index = {
   async index(ctx, next) {
     const title = 'koa2 title'
@@ -8,7 +8,7 @@ const Index = {
   },
 
   async example(ctx, next) {
-    task.latest()
+    // task.latest()
     const title = 'report example'
     await ctx.render('example', {
       title

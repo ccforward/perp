@@ -4,7 +4,6 @@ const platform = require('platform')
 const _ = require('lodash')
 const log4js = require('log4js')
 const DateCalc = require('date-calc')
-const Task = require('../task')
 
 const loggerErr = log4js.getLogger('errors')
 const loggerPerf = log4js.getLogger('performance')

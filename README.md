@@ -144,12 +144,15 @@ yarn install
 npm install
 
 # 开发
-npm run devsdk
+npm run dev
 
 # 前端页面开发
 npm run dev:fe
 
-# 线上用 PM2 运行 
+# 部署
+npm run deploy
+
+# 线上用 PM2 部署
 pm2 start src/index.js
 ```
 
